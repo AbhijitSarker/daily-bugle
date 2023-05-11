@@ -37,7 +37,7 @@ const displayNews = (newses) => {
         newsDiv.classList.add('card', 'mb-3');
         newsDiv.innerHTML = `
             <div class="row g-0">
-            <div class="col-md-4">
+            <div class=" col-md-4 p-1">
               <img
                 src="${news.thumbnail_url}"
                 class="img-fluid rounded-start"
@@ -59,9 +59,9 @@ const displayNews = (newses) => {
                 <div class="d-flex justify-content-between">
                   <!-- author -->
                   <div class="d-flex">
-                    <img
+                    <img class="rounded-circle me-3 mb-3"
                       src="${news.author.img}"
-                      style="height: 60px"
+                      style="height: 50px"
                       alt=""
                     />
                     <div class="">
@@ -91,14 +91,14 @@ const displayNews = (newses) => {
                       aria-labelledby="staticBackdropLabel"
                       aria-hidden="true"
                     >
-                      <div class="modal-dialog">
+                      <div class="modal-dialog modal-xl">
                         <div class="modal-content">
                           <div class="modal-header">
                             <h1
                               class="modal-title fs-5"
                               id="staticBackdropLabel"
                             >
-                              Modal title
+                              ${news.title}
                             </h1>
                             <button
                               type="button"
@@ -111,20 +111,20 @@ const displayNews = (newses) => {
                           <div class="modal-body">
                             <!-- modal author -->
                             <div class="d-flex">
-                              <img
-                                src="pexels-jan-n-g-u-y-e-n-_-699953-removebg-preview.png"
-                                style="height: 60px"
+                              <img class="rounded-circle me-3 mb-3"
+                                src="${news.author.img}"
+                                style="height: 50px"
                                 alt=""
                               />
                               <div class="">
-                                <div class=""><small>dfdf</small></div>
-                                <div class=""><small>dfdf</small></div>
+                                <div class=""><small>${news.author.name}</small></div>
+                                <div class=""><small>${news.author.published_date}</small></div>
                               </div>
                             </div>
                             <!-- modal image -->
-
+                                <img class="" src="${news.image_url}" alt="" width="700" height="">
                             <!-- modal details -->
-
+                                <p>${news.details}</p>
                             <!-- modal footer -->
                             <div class="modal-footer">
                               <button
