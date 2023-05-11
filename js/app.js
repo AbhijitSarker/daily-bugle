@@ -11,7 +11,7 @@ const displayCategories = (categories) => {
         const categoryDiv = document.createElement("div");
         categoryDiv.classList.add("category");
         categoryDiv.innerHTML = `
-            <a href="#" onclick="loadNews('${category.category_id}')" class="text-decoration-none text-black-50">${category.category_name}</a>
+            <a href="#" onclick="loadNews('${category.category_id}')" class="text-decoration-none sticky-top text-black-50">${category.category_name}</a>
         `;
         categoriesContainer.appendChild(categoryDiv);
         // console.log(category.category_id);
@@ -23,18 +23,16 @@ const loadNews = (categoryId) => {
     const url = `https://openapi.programming-hero.com/api/news/category/${categoryId}`;
     fetch(url)
         .then((res) => res.json())
-        .then((data) => displayNews(data.data));
-    // .then((data) => console.log(data.status));
+        .then((data) => displayNews(data.data))
 };
 
 const displayNews = (newses) => {
-    // console.log(newses);
-
     const newsContainer = document.getElementById('news-container');
+    newsContainer.innerHTML = "";
     newses.forEach((news) => {
         // console.log(news);
         const newsDiv = document.createElement('div');
-        newsDiv.classList.add('card', 'mb-3');
+        newsDiv.classList.add('card', 'mb-3', 'border-0', 'shadow', 'p-3', 'mb-5', 'bg-body-tertiary', 'rounded');
         newsDiv.innerHTML = `
             <div class="row g-0">
             <div class=" col-md-4 p-1">
@@ -48,8 +46,14 @@ const displayNews = (newses) => {
               <div class="card-body">
                 <h5 class="card-title">${news.title}</h5>
                 <p class="card-text">
-                  This is a wider card with supporting text below as a natural
-                  additional content. This content is a little bit longer.
+                  ${news.details.slice(0, 300)}.....
+                   <span
+                      style="color: blue"
+                      data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrop"
+                    >
+                      read more
+                    </span>
                 </p>
                 <p class="card-text">
                   <small class="text-body-secondary"
