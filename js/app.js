@@ -38,10 +38,81 @@ const displayTrendPicks = (newses) => {
       trendingDiv.innerHTML = `
         <img src="${news.image_url}" class="card-img" alt="...">
   <div class="card-img-overlay">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">Last updated 3 mins ago</p>
+    <h1 class="card-title text-black">Todays Pick</h1>
+    <h5 class="card-title text-black">${news.title}</h5>
+    <p class="card-text">${news.details.slice(0, 300)}</p>
+    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrops"
+                    >
+                      read more
+                    </button>
+                    <!-- Modal -->
+                    <div
+                      class="modal fade"
+                      id="staticBackdrops"
+                      data-bs-backdrop="static"
+                      data-bs-keyboard="false"
+                      tabindex="-1"
+                      aria-labelledby="staticBackdropsLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog text-black modal-xl">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1
+                              class="modal-title fs-5"
+                              id="staticBackdropsLabel"
+                            >
+                              ${news.title}
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <!-- modal body -->
+                          <div class="modal-body">
+                            <!-- modal author -->
+                            <div class="d-flex">
+                              <img class="rounded-circle me-3 mb-3"
+                                src="${news.author.img}"
+                                style="height: 50px"
+                                alt=""
+                              />
+                              <div class="">
+                                <div class=""><small>${news.author.name}</small></div>
+                                <div class=""><small>${news.author.published_date}</small></div>
+                              </div>
+                            </div>
+                            <!-- modal image -->
+                                <img class="" src="${news.image_url}" alt="" width="700" height="">
+                            <!-- modal details -->
+                                <p>${news.details}</p>
+                            <!-- modal footer -->
+                            <div class="modal-footer">
+                              <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                              >
+                                Close
+                              </button>
+                              <button type="button" class="btn btn-primary">
+                                Understood
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+    
   </div>
+  
       `;
       trendingContainer.appendChild(trendingDiv);
     }
@@ -186,6 +257,8 @@ const loadNews = (categoryId) => {
 const displayNews = (newses) => {
   const newsContainer = document.getElementById('news-container');
   const trendingContainer = document.getElementById('todays-picks');
+  const trendingButton = document.getElementById('trending-button');
+  trendingButton.classList.add('d-none');
   trendingContainer.classList.add('d-none');
   // const categoryIdColor = document.getElementById(`category-${categoryId}`);
   // console.log(categoryIdColor);
