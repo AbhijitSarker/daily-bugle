@@ -373,9 +373,7 @@ const displayNews = (newses) => {
                               >
                                 Close
                               </button>
-                              <button type="button" class="btn btn-primary">
-                                Understood
-                              </button>
+                              
                             </div>
                           </div>
                         </div>
